@@ -1,2 +1,2 @@
-# art_gallery_git
-Django based web application for art gallery
+# art_gallery
+Django based web application for ART GALLERY 

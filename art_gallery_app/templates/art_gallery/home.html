@@ -1,0 +1,16 @@
+{% extends 'art_gallery/base.html' %}
+{% block content %}
+	<h1>Welcome to the art gallery app</h1>
+	<div style="display: inline-flex;">
+		{% for gallery in gallery_list %}
+		<div class="card" style="width: 15rem; margin: 2rem">
+			<img class="card-img-top" src="" alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">{{gallery.gallery_name}}</h5>
+				<h6 class="card-title">{{gallery.location}}</h6>
+				<a href="" class="btn btn-primary">Open Gallery</a>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+{% endblock content %}
