@@ -1,10 +1,10 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# from .models import Artist, Gallery, Exhibition, Painting, Exhibition_Painting
+from .models import DbArtist, DbExhibition, DbExhibitionPainting, DbGallery, DbPainting
 
 # Register your models here.
-# admin.site.register(Artist)
-# admin.site.register(Gallery)
-# admin.site.register(Exhibition)
-# admin.site.register(Painting)
-# admin.site.register(Exhibition_Painting)
+admin.site.register(DbArtist)
+admin.site.register(DbGallery)
+admin.site.register(DbExhibition)
+admin.site.register(DbPainting)
+admin.site.register(DbExhibitionPainting)
