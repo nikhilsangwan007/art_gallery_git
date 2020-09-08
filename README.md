@@ -2,3 +2,5 @@
 Django based web application for ART GALLERY a MVT (model view test) architecture.
 
 made by Parth Bhope and Nikhil Sangwan
+
+commiting changes made by parth 
