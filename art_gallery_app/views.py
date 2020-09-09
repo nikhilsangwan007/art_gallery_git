@@ -22,17 +22,14 @@ class ExhibitionView(generic.ListView):
 		ex_list = DbExhibition.objects.filter(gallery=pk)
 		return ex_list
 
-class CollectionView(generic.ListView):
+class CollectionView(generic.DetailView):
 	template_name = 'art_gallery/collection.html'
 	context_object_name = 'context_painting_list'
+	model = DbExhibitionPainting
 
 	def get_queryset(self):
 		pk = self.kwargs['pk']
-		painting_id_list = DbExhibitionPainting.objects.filter(exhibition=pk)
-		context_painting_list = {}
-		for ids in painting_id_list:
-			painting_list = DbPainting.objects.filter(painting_id = ids.painting.painting_id)
-		context_painting_list['painting_list'] = painting_list
-		return context_painting_list
+		paint_list = DbExhibitionPainting.objects.filter(exhibition=pk)
+		return paint_list
 
 # Create your views here.
