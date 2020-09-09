@@ -1,0 +1,9 @@
+{% extends 'art_gallery/base.html' %}
+{% block content %}
+	<!-- <h1>Welcome to the art gallery app</h1> -->
+	{% for ex in exhibition_list %}
+	<div class="list-group">
+		<a href="{% url 'art_gallery_app:collection' ex.exhibition_id %}" class="list-group-item list-group-item-action">{{ ex.exhibition_name }}</a>
+	</div>
+	{% endfor %}
+{% endblock content %}
