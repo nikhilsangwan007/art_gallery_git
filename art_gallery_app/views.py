@@ -3,8 +3,8 @@
 # from django.shortcuts import render
 # from django.urls import reverse
 # from django.views import generic
-# from django.http import Http404 
-# from django.db import connection
+from django.http import Http404 
+from django.db import connection
 # from .models import DbArtist, DbExhibition, DbExhibitionPainting, DbGallery, DbPainting,DbQueries
 
 app_name = 'art_gallery_app'
@@ -18,7 +18,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
- from .form import *
+from .form import *
 from .models import *
 
 def RegisterView(request):
@@ -108,26 +108,43 @@ def collection(request , exhibition_id):
 	return render(request,'art_gallery/collection.html',{ 'data' :data })
 # Create your views here.
 def paintings(request):
-	paintings_data = DbPainting.objects.all()
-	# print(data)
-	return render(request,'art_gallery/paintings.html',{'paintings':paintings_data})
+	if request.user.is_authenticated:
+		paintings_data = DbPainting.objects.all()
+		# print(data)
+		return render(request,'art_gallery/paintings.html',{'paintings':paintings_data})
+	else :
+		return redirect('art_gallery_app:home')
 
 def info(request):
-	artists = DbArtist.objects.all()
-	return render(request,'art_gallery/info.html',{'artists':artists})
+	if request.user.is_authenticated:
+		artists = DbArtist.objects.all()
+		return render(request,'art_gallery/info.html',{'artists':artists})
+	else :
+		return redirect('art_gallery_app:home')
 
 def artwork(request,artist_id):
-	paintings = DbPainting.objects.filter(artist=artist_id)
-	return render(request , 'art_gallery/artwork.html',{'paintings' :paintings})
+	if request.user.is_authenticated:
+		paintings = DbPainting.objects.filter(artist=artist_id)
+		return render(request , 'art_gallery/artwork.html',{'paintings' :paintings})
+	else:
+		return redirect('art_gallery_app:home')
+
 
 def query(request):
-	queryList = DbQueries.objects.all()
-	return render(request,'art_gallery/query.html',{'queryList':queryList})
+	if request.user.is_authenticated:
+		queryList = DbQueries.objects.all()
+		return render(request,'art_gallery/query.html',{'queryList':queryList})
+	else:
+		return redirect('art_gallery_app:home')
 
 def result(request , query_id):
-	query = DbQueries.objects.get(pk=query_id)
-	with connection.cursor() as cursor:
-		cursor.execute(query.query)
-		row = cursor.fetchall()
-	return render(request ,'art_gallery/result.html',{'row':row})
+	if request.user.is_authenticated:
+		query = DbQueries.objects.get(pk=query_id)
+		with connection.cursor() as cursor:
+			cursor.execute(query.query)
+			row = cursor.fetchall()
+		return render(request ,'art_gallery/result.html',{'row':row})
+	else:
+		return redirect('art_gallery_app:home')
+
 
