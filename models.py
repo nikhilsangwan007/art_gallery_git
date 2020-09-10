@@ -8,66 +8,6 @@
 from django.db import models
 
 
-class ArtGalleryAppArtist(models.Model):
-    artist_id = models.IntegerField(primary_key=True)
-    artist_name = models.CharField(max_length=200)
-    birthplace = models.CharField(max_length=200)
-    art_type = models.CharField(max_length=200)
-    date_of_birth = models.DateField()
-
-    class Meta:
-        managed = False
-        db_table = 'art_gallery_app_artist'
-
-
-class ArtGalleryAppExhibition(models.Model):
-    exhibition_id = models.IntegerField(primary_key=True)
-    exhibition_name = models.CharField(max_length=200)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    gallery_id = models.ForeignKey('ArtGalleryAppGallery', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'art_gallery_app_exhibition'
-
-
-class ArtGalleryAppExhibitionPainting(models.Model):
-    exhibition_id = models.ForeignKey(ArtGalleryAppExhibition, models.DO_NOTHING)
-    painting_id = models.ForeignKey('ArtGalleryAppPainting', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'art_gallery_app_exhibition_painting'
-        unique_together = (('painting_id', 'exhibition_id'),)
-
-
-class ArtGalleryAppGallery(models.Model):
-    gallery_id = models.IntegerField(primary_key=True)
-    gallery_name = models.CharField(max_length=200)
-    location = models.CharField(max_length=200)
-
-    class Meta:
-        managed = False
-        db_table = 'art_gallery_app_gallery'
-
-
-class ArtGalleryAppPainting(models.Model):
-    painting_id = models.IntegerField(primary_key=True)
-    painting_name = models.CharField(max_length=200)
-    genre = models.CharField(max_length=200)
-    year_of_publish = models.DateField()
-    price = models.IntegerField()
-    rating = models.IntegerField()
-    painting_url = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
-    artist_id = models.ForeignKey(ArtGalleryAppArtist, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'art_gallery_app_painting'
-
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -192,6 +132,15 @@ class DbPainting(models.Model):
     class Meta:
         managed = False
         db_table = 'db_painting'
+
+
+class DbQueries(models.Model):
+    id = models.IntegerField(primary_key=True)
+    query = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'db_queries'
 
 
 class DjangoAdminLog(models.Model):

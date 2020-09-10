@@ -1,12 +1,29 @@
 {% extends 'art_gallery/base.html' %}
 {% block content %}
-	<!-- <h1>Welcome to the art gallery app</h1> -->
-		<div>{{ context_painting_list }}</div>
-	<!-- {% for context in context_painting_list %} -->
+<!-- <h1>Welcome to the art gallery app</h1> -->
+<div class="container">
+	<h4>Collection of paintings</h4>
+</div>
+<div class="container-fluid row">
+	{% for d in data %}
+	<div class="card col-lg-3" style="width: 15rem; ">
+		<img class="card-img-top" src="{{d.painting_url}}" alt="Card image cap">
+		<div class="card-body">
+			<h5 class="card-title">{{d.painting_name}}</h5>
+			<h6 class="card-title">Painted in {{d.year_of_publish}}</h6>
+			<h6 class="card-title">info {{d.description}}</h6>
+			<h6 class="card-title">price {{d.price}}</h6>
+			<h6 class="card-title">rating {{d.rating}}</h6>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+<!-- {% for context in context_painting_list %} -->
 		<!-- {% for pt in context %}
 			<div class="list-group">
 				<a href="#" class="list-group-item list-group-item-action">{{ pt.painting_name }}</a>
 			</div>
-		{% endfor %} -->
-	<!-- {% endfor %} -->
-{% endblock content %}
+			{% endfor %} -->
+			<!-- {% endfor %} -->
+			{% endblock content %}

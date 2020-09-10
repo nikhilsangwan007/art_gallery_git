@@ -1,0 +1,12 @@
+{% extends 'art_gallery/base.html' %}
+<div class="container-fluid row">
+{% block content %}
+	{%for r in row%}
+	<div class="card col-lg-4" style="width: 18rem; ">
+			<div class="card-body">
+				<p class="card-text">{{r}}</p>
+			</div>
+		</div>
+{%endfor%}
+{% endblock content %}
+</div>

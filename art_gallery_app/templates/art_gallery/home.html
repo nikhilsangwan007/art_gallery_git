@@ -2,8 +2,9 @@
 {% block content %}
 	<!-- <h1>Welcome to the art gallery app</h1> -->
 	{% for gallery in gallery_list %}
-	<div class="card" style="width: 15rem; margin: 2rem">
-		<img class="card-img-top" src="" alt="Card image cap">
+	<div class="card col-lg-3" style="width: 15rem; margin: 2rem">
+<!-- 		<img class="card-img-top" src="" alt="Card image cap"> -->
+		<div style="background-image: linear-gradient(to right, #0062E6, #33AEFF);;height: 200px; width: 100%"></div>
 		<div class="card-body">
 			<h5 class="card-title">{{gallery.gallery_name}}</h5>
 			<h6 class="card-title">{{gallery.location}}</h6>

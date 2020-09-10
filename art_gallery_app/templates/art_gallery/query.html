@@ -1,0 +1,17 @@
+{% extends 'art_gallery/base.html' %}
+{% block content %}
+<div class="row conainer-fluid">
+	{%for q in queryList%}
+	<div class="card col-lg-3" style="width: 15rem; margin: 2rem">
+<!-- 		<img class="card-img-top" src="" alt="Card image cap"> -->
+		<div class="card-body">
+			<h5 class="card-title">{{q.query}}</h5>
+			<a href="{% url 'art_gallery_app:result' q.id %}" class="btn btn-primary">Get Results</a>
+		</div>
+	</div>
+	{%endfor%}
+	
+	
+	
+</div>
+{% endblock content %}
