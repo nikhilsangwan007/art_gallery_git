@@ -100,7 +100,7 @@ class DbExhibition(models.Model):
 
 class DbExhibitionPainting(models.Model):
     painting = models.OneToOneField('DbPainting', models.DO_NOTHING, primary_key=True)
-    exhibition = models.ForeignKey('DbExhibition', models.DO_NOTHING)
+    exhibition = models.ForeignKey(DbExhibition, models.DO_NOTHING)
 
     class Meta:
         managed = False
@@ -132,6 +132,15 @@ class DbPainting(models.Model):
     class Meta:
         managed = False
         db_table = 'db_painting'
+
+
+class DbQueries(models.Model):
+    id = models.IntegerField(primary_key=True)
+    query = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'db_queries'
 
 
 class DjangoAdminLog(models.Model):
